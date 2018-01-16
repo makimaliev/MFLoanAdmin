@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="employmentHistory")
+@Table(name="employment_history")
 
 public class EmploymentHistory {
  

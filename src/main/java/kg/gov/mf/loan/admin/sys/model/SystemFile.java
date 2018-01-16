@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import kg.gov.mf.loan.admin.org.model.BankData;
 
 @Entity
-@Table(name="systemFile")
+@Table(name="system_file")
 public class SystemFile {
  
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)

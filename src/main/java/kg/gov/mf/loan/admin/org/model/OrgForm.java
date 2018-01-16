@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="orgform")
+@Table(name="org_form")
 
 public class OrgForm {
  
