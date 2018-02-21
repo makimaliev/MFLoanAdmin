@@ -1,6 +1,7 @@
 package kg.gov.mf.loan.admin.org.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -87,9 +88,26 @@ public class Department {
 
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
-	}    
-    
-    
-    
+	}
+
+
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 83 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) return true;
+		if ( !(other instanceof Department) ) return false;
+
+		final Department department = (Department) other;
+
+		if(department.getId() != getId()) return false;
+
+		return true;
+	}
 	
 }

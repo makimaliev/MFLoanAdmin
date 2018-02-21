@@ -1,6 +1,7 @@
 package kg.gov.mf.loan.admin.org.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -48,7 +49,7 @@ public class Organization {
     private Set<BankData> bankData = new HashSet<BankData>();    
     
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private Set<Department> department = new HashSet<Department>(); 
+    private Set<Department> department = new HashSet<Department>();
     
     
     @ManyToOne(targetEntity=OrgForm.class, fetch = FetchType.EAGER)
@@ -134,10 +135,28 @@ public class Organization {
 	public void setDepartment(Set<Department> department) {
 		this.department = department;
 	}
-    
-	
-	
-    
-    
+
+
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 83 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) return true;
+		if ( !(other instanceof Organization) ) return false;
+
+		final Organization organization = (Organization) other;
+
+		if(organization.getId() != getId()) return false;
+
+		return true;
+	}
+
+
+
 
 }
