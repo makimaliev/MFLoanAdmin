@@ -33,7 +33,7 @@ public class Department {
     @Column(name="description")
     private String description;
     
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Position> position = new HashSet<Position>();
 
     

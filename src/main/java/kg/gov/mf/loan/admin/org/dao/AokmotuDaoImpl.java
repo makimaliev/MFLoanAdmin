@@ -3,8 +3,10 @@ package kg.gov.mf.loan.admin.org.dao;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,10 +90,10 @@ public class AokmotuDaoImpl implements AokmotuDao {
 
 	@Override
 	public Aokmotu findById(long id) {
-		
+
 		Session session = this.sessionFactory.getCurrentSession();
 		Aokmotu aokmotu = (Aokmotu) session.load(Aokmotu.class, new Long (id));
-		
+
 		logger.info("Aokmotu get by id == "+aokmotu);
 
 		return aokmotu ;
@@ -106,6 +108,17 @@ public class AokmotuDaoImpl implements AokmotuDao {
         List<Aokmotu> aokmotusList = session.createQuery("from Aokmotu").list();
         return aokmotusList;
     }
- 
 
+	@Override
+	public Aokmotu findByName(String name) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Aokmotu.class);
+		Aokmotu aokmotu = (Aokmotu)criteria.add(Restrictions.eq("name", name)).list().get(0);
+
+		logger.info("Aokmotu get by id == "+aokmotu);
+
+		return aokmotu ;
+	}
 }

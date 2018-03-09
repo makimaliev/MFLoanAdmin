@@ -19,4 +19,8 @@ public interface RegionDao {
 	
 	public List<Region> findAll();
 
+
+	public Region findByCode (String code);
+
+
 }

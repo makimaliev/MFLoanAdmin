@@ -53,4 +53,11 @@ public class AokmotuServiceJpaImpl implements AokmotuService {
     public List<Aokmotu> findAll() {
         return this.aokmotuDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public Aokmotu findByName(String name) {
+		return this.aokmotuDao.findByName(name);
+	}
+
 }

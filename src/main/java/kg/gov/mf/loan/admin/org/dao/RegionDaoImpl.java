@@ -1,13 +1,12 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,10 +89,22 @@ public class RegionDaoImpl implements RegionDao {
     @SuppressWarnings("unchecked")
     @Override
     public List<Region> findAll() {
+
         Session session = this.sessionFactory.getCurrentSession();
         List<Region> regionsList = session.createQuery("from Region").list();
         return regionsList;
     }
- 
+
+	public Region findByCode(String code) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Region.class);
+		Region region = (Region)criteria.add(Restrictions.eq("code", code)).uniqueResult();
+
+		logger.info("Region get by id == "+region);
+
+		return region ;
+	}
 
 }

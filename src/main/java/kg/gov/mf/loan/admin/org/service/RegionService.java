@@ -18,4 +18,6 @@ public interface RegionService {
 	public Region findById (long id);
 	
 	public List<Region> findAll();
+
+	public Region findByCode (String code);
 }

@@ -20,4 +20,5 @@ public interface AokmotuDao {
 	
 	public List<Aokmotu> findAll();
 
+	public Aokmotu findByName (String name);
 }

@@ -53,4 +53,10 @@ public class RegionServiceJpaImpl implements RegionService {
     public List<Region> findAll() {
         return this.regionDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public Region findByCode(String code) {
+		return this.regionDao.findByCode(code);
+	}
 }

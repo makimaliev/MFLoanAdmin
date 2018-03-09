@@ -15,6 +15,7 @@ public interface AokmotuService {
 	
 	public Aokmotu findById (long id);
 	
-	public List<Aokmotu> findAll();	
-	
+	public List<Aokmotu> findAll();
+
+	public Aokmotu findByName (String name);
 }
