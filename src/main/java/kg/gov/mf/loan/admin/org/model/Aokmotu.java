@@ -33,7 +33,7 @@ public class Aokmotu {
     @JoinColumn(name="district_id")
     District district; 
     
-    @OneToMany(mappedBy = "aokmotu", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
+    @OneToMany(mappedBy = "aokmotu", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval=true)
     private Set<Village> village = new HashSet<Village>(); 
 
 
