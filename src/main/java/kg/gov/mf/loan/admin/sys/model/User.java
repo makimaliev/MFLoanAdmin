@@ -3,7 +3,7 @@ package kg.gov.mf.loan.admin.sys.model;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
- 
+
 
 
 
@@ -20,6 +20,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import kg.gov.mf.loan.admin.org.model.Region;
+import kg.gov.mf.loan.admin.org.model.Staff;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -40,7 +42,7 @@ public class User {
     
     @Column(name="enabled")
     private boolean enabled;
-    
+
     @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { 
 			@JoinColumn(name = "user_id", nullable = false, updatable = false) }, 
@@ -55,7 +57,10 @@ public class User {
 					nullable = false, updatable = false) })
     private Set<SupervisorTerm> supervisorTerms = new HashSet<SupervisorTerm>(0);
 
-    
+	@ManyToOne(targetEntity=Staff.class, fetch = FetchType.EAGER)
+	@JoinColumn(name="staff_id")
+	Staff staff;
+
 	public long getId() {
 		return id;
 	}
@@ -96,7 +101,13 @@ public class User {
 		this.roles = roles;
 	}
 
-	
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
 
 	public Set<SupervisorTerm> getSupervisorTerms() {
 		return supervisorTerms;
