@@ -3,8 +3,10 @@ package kg.gov.mf.loan.admin.org.dao;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,6 +104,20 @@ public class DistrictDaoImpl implements DistrictDao {
         List<District> districtsList = session.createQuery("from District").list();
         return districtsList;
     }
- 
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<District> findByRegion(Region region) {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(District.class);
+
+		criteria.add(Restrictions.eq("region", region));
+
+
+		List<District> districtsList = criteria.list();
+		return districtsList;
+	}
 
 }

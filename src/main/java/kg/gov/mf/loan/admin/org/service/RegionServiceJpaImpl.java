@@ -1,6 +1,8 @@
 package kg.gov.mf.loan.admin.org.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,10 @@ public class RegionServiceJpaImpl implements RegionService {
 	
 	@Autowired
     private RegionDao regionDao;
+
+	@Autowired
+	private DistrictDao districtDao;
+
  
     public void setRegionDao(RegionDao regionDao) {
         this.regionDao = regionDao;
@@ -47,6 +53,18 @@ public class RegionServiceJpaImpl implements RegionService {
 	public Region findById(long id) {
 		return this.regionDao.findById(id);
 	}
+
+	@Override
+	@Transactional
+	public Region findByIdFull(long id)
+	{
+		Region region = this.regionDao.findById(id);
+
+		region.setDistrict(new HashSet<>(this.districtDao.findByRegion(region)));
+
+		return region;
+	}
+
 
 	@Override
     @Transactional

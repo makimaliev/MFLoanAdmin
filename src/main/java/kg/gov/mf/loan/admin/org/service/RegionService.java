@@ -16,6 +16,8 @@ public interface RegionService {
 	public void deleteById(long id);
 	
 	public Region findById (long id);
+
+	public Region findByIdFull (long id);
 	
 	public List<Region> findAll();
 

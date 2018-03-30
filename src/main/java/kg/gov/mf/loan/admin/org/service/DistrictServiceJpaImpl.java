@@ -53,4 +53,11 @@ public class DistrictServiceJpaImpl implements DistrictService {
     public List<District> findAll() {
         return this.districtDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<District> findByRegion(Region region)
+	{
+		return this.districtDao.findByRegion(region);
+	}
 }

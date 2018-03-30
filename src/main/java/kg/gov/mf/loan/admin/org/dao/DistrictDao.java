@@ -19,4 +19,6 @@ public interface DistrictDao {
 	
 	public List<District> findAll();
 
+	public List<District> findByRegion(Region region);
+
 }

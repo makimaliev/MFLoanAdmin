@@ -28,7 +28,7 @@ public class Region {
     @Column(name="code")
     private String code;
     
-    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval=true)
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<District> district = new HashSet<District>();
     
     
