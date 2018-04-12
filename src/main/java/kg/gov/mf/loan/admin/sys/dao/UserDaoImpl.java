@@ -2,6 +2,7 @@ package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
 
+import kg.gov.mf.loan.admin.org.model.Staff;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -96,6 +97,19 @@ public class UserDaoImpl implements UserDao {
 		return (User)criteria.uniqueResult() ;
     
     }
+
+	public User findByStaff(Staff staff) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(User.class);
+		criteria.createAlias("staff", "staff");
+		criteria.add(Restrictions.eq("staff.id", staff.getId()));
+
+
+		return (User)criteria.uniqueResult() ;
+
+	}
 	
 	
     @SuppressWarnings("unchecked")

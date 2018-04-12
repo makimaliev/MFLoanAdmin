@@ -1,12 +1,12 @@
 package kg.gov.mf.loan.admin.sys.service;
 
 import java.util.List;
+import java.util.Set;
 
+import kg.gov.mf.loan.admin.org.dao.DepartmentDao;
+import kg.gov.mf.loan.admin.org.dao.OrganizationDao;
 import kg.gov.mf.loan.admin.org.dao.StaffDao;
-import kg.gov.mf.loan.admin.org.model.Department;
-import kg.gov.mf.loan.admin.org.model.Organization;
-import kg.gov.mf.loan.admin.org.model.Person;
-import kg.gov.mf.loan.admin.org.model.Staff;
+import kg.gov.mf.loan.admin.org.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +22,14 @@ public class UserServiceJpaImpl implements UserService {
 
 	@Autowired
 	private StaffDao staffDao;
+
+	@Autowired
+	private OrganizationDao organizationDao;
+
+	@Autowired
+	private DepartmentDao departmentDao;
+
+
  
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
@@ -67,14 +75,18 @@ public class UserServiceJpaImpl implements UserService {
 	@Transactional
 	public User findByStaff(Staff staff)
 	{
-		return null;
+		return userDao.findByStaff(staff);
 	}
 
 	@Override
 	@Transactional
 	public User findByDepartment(Department department)
 	{
-		return null;
+		Organization gaubk = organizationDao.findById((long)1);
+		System.out.println(gaubk.getName());
+		System.out.println(department.getName());
+
+		return userDao.findByStaff(staffDao.findByOrganizationAndDepartment(organizationDao.findById((long)1),department));
 	}
 
 

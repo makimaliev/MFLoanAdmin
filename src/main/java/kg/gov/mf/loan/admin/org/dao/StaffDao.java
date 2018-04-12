@@ -16,6 +16,8 @@ public interface StaffDao {
 	public void deleteById(long id);
 	
 	public Staff findById (long id);
+
+	public Staff findByOrganizationAndDepartment (Organization organization,Department department);
 	
 	public List<Staff> findAll();
 

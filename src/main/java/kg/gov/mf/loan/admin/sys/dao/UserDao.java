@@ -2,6 +2,7 @@ package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
 
+import kg.gov.mf.loan.admin.org.model.Staff;
 import org.springframework.stereotype.Repository;
 
 
@@ -19,6 +20,8 @@ public interface UserDao {
 	public User findById (long id);
 	 
 	public User findByUsername(String username);
+
+	public User findByStaff(Staff staff);
 	
 	
 	public List<User> findAll();

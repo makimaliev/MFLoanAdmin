@@ -1,13 +1,12 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +84,26 @@ public class StaffDaoImpl implements StaffDao {
 		return staff ;
 	}
 
+
+	@Override
+	public Staff findByOrganizationAndDepartment(Organization organization, Department department) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Staff.class);
+		criteria.createAlias("organization", "organization");
+		criteria.createAlias("department", "department");
+		criteria.createAlias("position", "position");
+		criteria.add(Restrictions.eq("organization.id", organization.getId()));
+		criteria.add(Restrictions.eq("department.id", department.getId()));
+		criteria.setMaxResults(1);
+
+		System.out.println(department.getPosition().size());
+		criteria.add(Restrictions.eq("position.id", department.getPosition().iterator().next().getId()));
+
+		return (Staff) criteria.uniqueResult() ;
+
+	}
 
 	
     @SuppressWarnings("unchecked")

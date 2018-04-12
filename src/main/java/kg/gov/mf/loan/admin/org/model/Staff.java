@@ -1,5 +1,7 @@
 package kg.gov.mf.loan.admin.org.model;
 
+import kg.gov.mf.loan.admin.sys.model.User;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -28,8 +30,11 @@ public class Staff {
     @Column(name="name", nullable=false)
     private String name;
 
+	@ManyToOne(targetEntity=User.class, fetch = FetchType.EAGER)
+	@JoinColumn(name="user_id")
+	User user;
 
-    @Column(name="enabled")
+	@Column(name="enabled")
     private boolean enabled;  
     
     
@@ -117,6 +122,13 @@ public class Staff {
 		this.employmentHistory = employmentHistory;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public int hashCode() {
