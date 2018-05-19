@@ -2,7 +2,8 @@ package kg.gov.mf.loan.admin.sys.service;
  
 import java.util.ArrayList;
 import java.util.List;
- 
+
+import kg.gov.mf.loan.admin.sys.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -50,7 +51,11 @@ public class CustomUserDetailsService implements UserDetailsService{
     {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
          
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+//            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+        for(Role role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
         
         System.out.print("authorities :"+authorities);
         return authorities;
