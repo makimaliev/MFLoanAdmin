@@ -19,4 +19,6 @@ public interface OrganizationDao {
 	
 	public List<Organization> findAll();
 
+	public List<Organization> findLast100();
+
 }

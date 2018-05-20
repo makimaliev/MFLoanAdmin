@@ -53,4 +53,10 @@ public class OrganizationServiceJpaImpl implements OrganizationService {
     public List<Organization> findAll() {
         return this.organizationDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<Organization> findLast100() {
+		return this.organizationDao.findLast100();
+	}
 }

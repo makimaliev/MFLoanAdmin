@@ -18,4 +18,6 @@ public interface PersonService {
 	public Person findById (long id);
 	
 	public List<Person> findAll();
+
+	public List<Person> findLast100();
 }

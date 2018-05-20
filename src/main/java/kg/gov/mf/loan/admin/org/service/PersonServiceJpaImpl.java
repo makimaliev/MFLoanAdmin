@@ -53,4 +53,10 @@ public class PersonServiceJpaImpl implements PersonService {
     public List<Person> findAll() {
         return this.personDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<Person> findLast100() {
+		return this.personDao.findLast100();
+	}
 }

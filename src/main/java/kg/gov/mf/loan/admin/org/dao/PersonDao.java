@@ -19,4 +19,6 @@ public interface PersonDao {
 	
 	public List<Person> findAll();
 
+	public List<Person> findLast100();
+
 }

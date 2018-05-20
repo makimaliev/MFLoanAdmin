@@ -1,13 +1,12 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +93,20 @@ public class PersonDaoImpl implements PersonDao {
         List<Person> personsList = session.createQuery("from Person").list();
         return personsList;
     }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Person> findLast100() {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Person.class);
+
+		criteria.addOrder(Order.desc("id"));
+
+		criteria.setMaxResults(100);
+
+		return criteria.list();
+	}
  
 
 }

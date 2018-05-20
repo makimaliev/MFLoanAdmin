@@ -18,4 +18,7 @@ public interface OrganizationService {
 	public Organization findById (long id);
 	
 	public List<Organization> findAll();
+
+	public List<Organization> findLast100();
+
 }
