@@ -33,26 +33,26 @@ public class Organization {
     @Column(name="description")
     private String description;
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name="identity_doc_id")
     IdentityDoc identityDoc;     
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name="address_id")
     Address address;      
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name="contact_id")
     Contact contact;      
     
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<BankData> bankData = new HashSet<BankData>();    
     
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Department> department = new HashSet<Department>();
     
     
-    @ManyToOne(targetEntity=OrgForm.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=OrgForm.class, fetch = FetchType.EAGER)
     @JoinColumn(name="org_form_id")
     OrgForm orgForm; 
     
