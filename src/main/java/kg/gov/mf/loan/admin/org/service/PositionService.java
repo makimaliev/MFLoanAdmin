@@ -18,4 +18,8 @@ public interface PositionService {
 	public Position findById (long id);
 	
 	public List<Position> findAll();
+
+	public List<Position> findByDepartment(Department department);
+
+
 }

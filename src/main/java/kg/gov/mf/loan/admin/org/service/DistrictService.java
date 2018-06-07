@@ -19,4 +19,6 @@ public interface DistrictService {
 
 	public List<District> findByRegion(Region region);
 
+	public List<District> findByRegionId(Long regionId);
+
 }

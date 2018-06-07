@@ -53,4 +53,10 @@ public class PositionServiceJpaImpl implements PositionService {
     public List<Position> findAll() {
         return this.positionDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<Position> findByDepartment(Department department) {
+		return this.positionDao.findByDepartment(department);
+	}
 }

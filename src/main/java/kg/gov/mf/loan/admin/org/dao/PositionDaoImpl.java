@@ -1,13 +1,12 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +93,24 @@ public class PositionDaoImpl implements PositionDao {
         List<Position> positionsList = session.createQuery("from Position").list();
         return positionsList;
     }
- 
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Position> findByDepartment(Department department) {
+
+
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Position.class);
+
+		criteria.add(Restrictions.eq("department", department));
+
+
+		List<Position> positionsList = criteria.list();
+		return positionsList;
+
+	}
+
 
 }

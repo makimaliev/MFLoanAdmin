@@ -19,4 +19,6 @@ public interface PositionDao {
 	
 	public List<Position> findAll();
 
+	public List<Position> findByDepartment( Department department);
+
 }

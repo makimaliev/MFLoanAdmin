@@ -14,6 +14,9 @@ public class DistrictServiceJpaImpl implements DistrictService {
 	
 	@Autowired
     private DistrictDao districtDao;
+
+	@Autowired
+	private RegionDao regionDao;
  
     public void setDistrictDao(DistrictDao districtDao) {
         this.districtDao = districtDao;
@@ -59,5 +62,12 @@ public class DistrictServiceJpaImpl implements DistrictService {
 	public List<District> findByRegion(Region region)
 	{
 		return this.districtDao.findByRegion(region);
+	}
+
+	@Override
+	@Transactional
+	public List<District> findByRegionId(Long regionId)
+	{
+		return this.districtDao.findByRegion(regionDao.findById(regionId));
 	}
 }
