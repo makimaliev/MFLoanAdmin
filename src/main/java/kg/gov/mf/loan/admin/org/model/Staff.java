@@ -38,23 +38,23 @@ public class Staff {
     private boolean enabled;  
     
     
-    @ManyToOne(targetEntity=Department.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Department.class, fetch = FetchType.EAGER)
     @JoinColumn(name="department_id")
     Department department;
     
-    @ManyToOne(targetEntity=Position.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Position.class, fetch = FetchType.EAGER)
     @JoinColumn(name="position_id")
     Position position;    
     
-    @ManyToOne(targetEntity=Organization.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Organization.class, fetch = FetchType.EAGER)
     @JoinColumn(name="organization_id")
     Organization organization;    
     
-    @ManyToOne(targetEntity=Person.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Person.class, fetch = FetchType.EAGER)
     @JoinColumn(name="person_id")
     Person person;    
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name="employment_history_id")
     EmploymentHistory employmentHistory;     
     

@@ -46,7 +46,7 @@ public abstract class GenericDaoAdminImpl<E> implements GenericDaoAdmin<E> {
     }
 
     public List<E> findByParam(String param) {
-        return getCurrentSession().createCriteria(entityClass).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.asc(param)).list();
+        return getCurrentSession().createCriteria(entityClass).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc(param)).list();
     }
 
     public List<E> findByParam(String param, int firstResult, int maxResults) {
@@ -54,7 +54,7 @@ public abstract class GenericDaoAdminImpl<E> implements GenericDaoAdmin<E> {
         criteria.setFirstResult(firstResult);
         criteria.setMaxResults(maxResults);
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.addOrder(Order.asc(param));
+        criteria.addOrder(Order.desc(param));
         return criteria.list();
     }
 
@@ -79,8 +79,8 @@ public abstract class GenericDaoAdminImpl<E> implements GenericDaoAdmin<E> {
         getCurrentSession().delete(entity);
     }
 
-    public void deleteById(Long id) {
-        getCurrentSession().delete((E) getCurrentSession().get(entityClass, id));
-    }
+//    public void deleteById(Long id) {
+//        getCurrentSession().delete((E) getCurrentSession().get(entityClass, id));
+//    }
 
 }

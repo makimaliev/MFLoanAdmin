@@ -3,8 +3,11 @@ package kg.gov.mf.loan.admin.org.dao;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +106,24 @@ public class DepartmentDaoImpl implements DepartmentDao {
         List<Department> departmentsList = session.createQuery("from Department").list();
         return departmentsList;
     }
- 
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Department> findAllByOrganization(Organization organization) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Department.class);
+
+
+
+		criteria.createAlias("organization", "organization");
+		criteria.add(Restrictions.eq("organization.id", organization.getId()));
+		criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+
+		return criteria.list();
+
+	}
 
 }

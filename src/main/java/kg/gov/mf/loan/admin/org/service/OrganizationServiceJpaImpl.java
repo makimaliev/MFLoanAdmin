@@ -38,7 +38,7 @@ public class OrganizationServiceJpaImpl implements OrganizationService {
 	@Override
 	@Transactional	
 	public void deleteById(long id) {
-		this.organizationDao.deleteById(id);
+		this.organizationDao.delete(this.organizationDao.findById(id));
 		
 	}
 

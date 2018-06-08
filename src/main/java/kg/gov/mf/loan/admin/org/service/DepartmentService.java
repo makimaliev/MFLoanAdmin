@@ -18,4 +18,10 @@ public interface DepartmentService {
 	public Department findById (long id);
 	
 	public List<Department> findAll();
+
+	public List<Department> findAllByOrganization(Organization organization);
+
+
+
+
 }

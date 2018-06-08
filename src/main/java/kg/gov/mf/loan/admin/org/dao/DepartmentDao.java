@@ -19,4 +19,8 @@ public interface DepartmentDao {
 	
 	public List<Department> findAll();
 
+	public List<Department> findAllByOrganization(Organization organization);
+
 }
+
+

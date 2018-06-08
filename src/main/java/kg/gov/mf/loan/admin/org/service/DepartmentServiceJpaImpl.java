@@ -53,4 +53,10 @@ public class DepartmentServiceJpaImpl implements DepartmentService {
     public List<Department> findAll() {
         return this.departmentDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<Department> findAllByOrganization(Organization organization) {
+		return this.departmentDao.findAllByOrganization(organization);
+	}
 }

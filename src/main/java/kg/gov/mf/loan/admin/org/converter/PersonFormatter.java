@@ -30,7 +30,7 @@ public class PersonFormatter implements Formatter<Person> {
 		
 		Integer id = Integer.valueOf(text);
 		
-        return this.personService.findById(id);
+        return this.personService.findById((long)id);
 		
 		
 	}

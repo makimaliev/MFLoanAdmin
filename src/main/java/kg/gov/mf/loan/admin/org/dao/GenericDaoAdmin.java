@@ -15,5 +15,5 @@ public interface GenericDaoAdmin<E> {
     void edit(E entity);
 
     void delete(E entity);
-    void deleteById(Long id);
+//    void deleteById(Long id);
 }

@@ -13,5 +13,5 @@ public interface GenericServiceAdmin<E> {
     int count();
     void edit(E entity);
     void delete(E entity);
-    void deleteById(Long id);
+
 }

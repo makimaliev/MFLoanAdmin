@@ -21,4 +21,6 @@ public interface StaffDao {
 	
 	public List<Staff> findAll();
 
+	public List<Staff> findAllByDepartment(Department department);
+
 }

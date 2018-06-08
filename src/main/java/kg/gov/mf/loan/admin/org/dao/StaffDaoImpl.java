@@ -6,6 +6,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,6 +105,20 @@ public class StaffDaoImpl implements StaffDao {
 
 		return (Staff) criteria.uniqueResult() ;
 
+	}
+
+	@Override
+	public List<Staff> findAllByDepartment(Department department) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Staff.class);
+
+		criteria.createAlias("department", "department");
+		criteria.add(Restrictions.eq("department.id", department.getId()));
+		criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+
+		return criteria.list();
 	}
 
 	

@@ -37,7 +37,7 @@ public class Department {
     private Set<Position> position = new HashSet<Position>();
 
     
-    @ManyToOne(targetEntity=Organization.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Organization.class, fetch = FetchType.EAGER)
     @JoinColumn(name="organization_id")
     Organization organization; 
     

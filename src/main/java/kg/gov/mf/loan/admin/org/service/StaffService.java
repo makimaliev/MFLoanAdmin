@@ -18,4 +18,6 @@ public interface StaffService {
 	public Staff findById (long id);
 	
 	public List<Staff> findAll();
+
+	public List<Staff> findAllByDepartment(Department department);
 }
