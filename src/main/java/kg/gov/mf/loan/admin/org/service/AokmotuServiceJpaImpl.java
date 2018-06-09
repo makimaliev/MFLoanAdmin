@@ -54,6 +54,13 @@ public class AokmotuServiceJpaImpl implements AokmotuService {
         return this.aokmotuDao.findAll();
     }
 
+
+	@Override
+	@Transactional
+	public List<Aokmotu> findByDistrict(District district) {
+		return this.aokmotuDao.findByDistrict(district);
+	}
+
 	@Override
 	@Transactional
 	public Aokmotu findByName(String name) {

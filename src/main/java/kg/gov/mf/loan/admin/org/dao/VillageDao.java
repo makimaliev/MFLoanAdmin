@@ -20,4 +20,6 @@ public interface VillageDao {
 	
 	public List<Village> findAll();
 
+	public List<Village> findByAokmotu(Aokmotu aokmotu);
+
 }

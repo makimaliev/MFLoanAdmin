@@ -15,6 +15,8 @@ public interface VillageService {
 	
 	public Village findById (long id);
 	
-	public List<Village> findAll();	
-	
+	public List<Village> findAll();
+
+	public List<Village> findByAokmotu(Aokmotu aokmotu);
+
 }

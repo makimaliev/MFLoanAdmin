@@ -17,5 +17,7 @@ public interface AokmotuService {
 	
 	public List<Aokmotu> findAll();
 
+	public List<Aokmotu> findByDistrict(District district);
+
 	public Aokmotu findByName (String name);
 }

@@ -53,4 +53,10 @@ public class VillageServiceJpaImpl implements VillageService {
     public List<Village> findAll() {
         return this.villageDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<Village> findByAokmotu(Aokmotu aokmotu) {
+		return this.villageDao.findByAokmotu(aokmotu);
+	}
 }

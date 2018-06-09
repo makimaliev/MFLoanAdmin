@@ -109,6 +109,26 @@ public class AokmotuDaoImpl implements AokmotuDao {
         return aokmotusList;
     }
 
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Aokmotu> findByDistrict(District district) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Aokmotu.class);
+
+		criteria.add(Restrictions.eq("district", district));
+
+		return criteria.list();
+
+	}
+
+
+
+
+
 	@Override
 	public Aokmotu findByName(String name) {
 

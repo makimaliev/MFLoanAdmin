@@ -3,8 +3,10 @@ package kg.gov.mf.loan.admin.org.dao;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +106,19 @@ public class VillageDaoImpl implements VillageDao {
         List<Village> villagesList = session.createQuery("from Village").list();
         return villagesList;
     }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Village> findByAokmotu(Aokmotu aokmotu) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Village.class);
+
+		criteria.add(Restrictions.eq("aokmotu", aokmotu));
+
+		return criteria.list();
+	}
  
 
 }
