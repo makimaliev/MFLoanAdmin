@@ -8,7 +8,4 @@ import kg.gov.mf.loan.admin.org.model.*;
 
 @Repository
 public interface OrganizationDao extends  GenericDaoAdmin<Organization>{
-
-	public List<Organization> findLast100();
-
 }

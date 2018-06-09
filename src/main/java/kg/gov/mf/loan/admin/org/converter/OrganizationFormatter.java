@@ -30,7 +30,7 @@ public class OrganizationFormatter implements Formatter<Organization> {
 		
 		Integer id = Integer.valueOf(text);
 		
-        return this.organizationService.findById(id);
+        return this.organizationService.findById((long)id);
 		
 		
 	}

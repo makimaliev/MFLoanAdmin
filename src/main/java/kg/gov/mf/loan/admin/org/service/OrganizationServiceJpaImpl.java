@@ -10,53 +10,6 @@ import kg.gov.mf.loan.admin.org.dao.*;
 import kg.gov.mf.loan.admin.org.model.*;
 
 @Service
-public class OrganizationServiceJpaImpl implements OrganizationService {
+public class OrganizationServiceJpaImpl extends GenericServiceAdminImpl<Organization> implements OrganizationService {
 	
-	@Autowired
-    private OrganizationDao organizationDao;
- 
-    public void setOrganizationDao(OrganizationDao organizationDao) {
-        this.organizationDao = organizationDao;
-    }
- 
-    
-
-	@Override
-	@Transactional	
-	public void create(Organization organization) {
-		this.organizationDao.create(organization);
-		
 	}
-
-	@Override
-	@Transactional	
-	public void edit(Organization organization) {
-		this.organizationDao.edit(organization);
-		
-	}
-
-	@Override
-	@Transactional	
-	public void deleteById(long id) {
-		this.organizationDao.delete(this.organizationDao.findById(id));
-		
-	}
-
-	@Override
-	@Transactional	
-	public Organization findById(long id) {
-		return this.organizationDao.findById(id);
-	}
-
-	@Override
-    @Transactional
-    public List<Organization> findAll() {
-        return this.organizationDao.findAll();
-    }
-
-	@Override
-	@Transactional
-	public List<Organization> findLast100() {
-		return this.organizationDao.findLast100();
-	}
-}

@@ -16,41 +16,5 @@ import kg.gov.mf.loan.admin.org.model.*;
  
 @Repository("organizationDao")
 public class OrganizationDaoImpl extends GenericDaoAdminImpl<Organization>implements OrganizationDao {
-     
-    private static final Logger logger = LoggerFactory.getLogger(OrganizationDaoImpl.class);
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sf){
-        this.sessionFactory = sf;
-    }
-
-
-    @Autowired
-    public OrganizationDaoImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Organization> findLast100() {
-
-
-
-		Session session = this.sessionFactory.getCurrentSession();
-
-		Criteria criteria = session.createCriteria(Organization.class);
-
-		criteria.addOrder(Order.desc("id"));
-
-	criteria.setMaxResults(100);
-
-		return criteria.list();
-	}
-
-
-
-
 
 }
