@@ -33,7 +33,7 @@ public class Attachment {
     @Column(name="name", nullable=false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional=true)
+    @ManyToOne(fetch = FetchType.EAGER, optional=true)
     @JoinColumn(name="information_id")
     private Information information;
     
