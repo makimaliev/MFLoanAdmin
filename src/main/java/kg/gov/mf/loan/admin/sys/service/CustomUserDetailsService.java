@@ -3,6 +3,7 @@ package kg.gov.mf.loan.admin.sys.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import kg.gov.mf.loan.admin.sys.model.Permission;
 import kg.gov.mf.loan.admin.sys.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,12 +37,12 @@ public class CustomUserDetailsService implements UserDetailsService{
         }
             return new org.springframework.security.core.userdetails.User
             		(
-            				user.getUsername(), 
+            				user.getUsername(),
             				user.getPassword(),
-            				user.isEnabled(), 
-            				true, 
-            				true, 
-            				true, 
+            				user.isEnabled(),
+            				true,
+            				true,
+            				true,
             				getGrantedAuthorities(user)
             		);
     }
@@ -55,6 +56,11 @@ public class CustomUserDetailsService implements UserDetailsService{
 
         for(Role role : user.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
+
+            for (Permission permission: role.getPermissions())
+            {
+                authorities.add(new SimpleGrantedAuthority(permission.getName()));
+            }
         }
         
         System.out.print("authorities :"+authorities);
