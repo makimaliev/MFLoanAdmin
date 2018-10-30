@@ -15,7 +15,7 @@ public abstract class GenericModelAdmin implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private int version = 1;
+	private long version = 1;
 
 	public long getId() {
 		return id;
@@ -25,12 +25,11 @@ public abstract class GenericModelAdmin implements Serializable {
 		this.id = id;
 	}
 
-	public int getVersion() {
+	public long getVersion() {
 		return version;
 	}
 
-	public void setVersion(int version) {
+	public void setVersion(long version) {
 		this.version = version;
 	}
-	
 }
