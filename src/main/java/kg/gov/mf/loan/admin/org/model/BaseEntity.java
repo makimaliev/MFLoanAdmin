@@ -12,7 +12,7 @@ public abstract class BaseEntity extends GenericModelAdmin {
 	@Column(name="enabled")
 	private boolean enabled;
 
-	@Column(name="description")
+	@Column(name="description",length=1000)
 	private String description;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
