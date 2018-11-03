@@ -136,11 +136,11 @@ public class User {
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
+//		if (getClass() != obj.getClass()) {
+//			return false;
+//		}
 		final User other = (User) obj;
-		if (!Objects.equals(this.id, other.id)) {
+		if (!Objects.equals(this.getId(), other.getId())) {
 			return false;
 		}
 		return true;
