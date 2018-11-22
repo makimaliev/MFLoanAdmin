@@ -30,8 +30,7 @@ public class Staff {
     @Column(name="name", nullable=false)
     private String name;
 
-	@ManyToOne(targetEntity=User.class, fetch = FetchType.EAGER)
-	@JoinColumn(name="user_id")
+	@OneToOne(mappedBy = "staff")
 	User user;
 
 	@Column(name="enabled")
@@ -54,10 +53,10 @@ public class Staff {
     @JoinColumn(name="person_id")
     Person person;    
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToOne(targetEntity=EmploymentHistory.class,cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name="employment_history_id")
-    EmploymentHistory employmentHistory;     
-    
+    EmploymentHistory employmentHistory;
+
 	public Person getPerson() {
 		return person;
 	}

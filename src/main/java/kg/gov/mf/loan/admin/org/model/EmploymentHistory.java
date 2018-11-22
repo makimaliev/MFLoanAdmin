@@ -36,10 +36,10 @@ public class EmploymentHistory {
     @Temporal(TemporalType.DATE)
     private Date date;    
     
-    @OneToOne(targetEntity=Staff.class, fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "employmentHistory", fetch = FetchType.EAGER)
     @JoinColumn(name="staff_id")
-    Staff staff;    
-    
+    Staff staff;
+
     @OneToMany(mappedBy = "employmentHistory", cascade = CascadeType.MERGE, fetch = FetchType.EAGER, orphanRemoval=true)
     private Set<EmploymentHistoryEvent> employmentHistoryEvent = new HashSet<EmploymentHistoryEvent>();
 
