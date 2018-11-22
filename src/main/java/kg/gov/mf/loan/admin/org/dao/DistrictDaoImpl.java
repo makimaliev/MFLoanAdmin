@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -89,6 +90,8 @@ public class DistrictDaoImpl implements DistrictDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		District district = (District) session.load(District.class, new Long (id));
+
+		Hibernate.initialize(district.getAokmotu());
 		
 		logger.info("District get by id == "+district);
 

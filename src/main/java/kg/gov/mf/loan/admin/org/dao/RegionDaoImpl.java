@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -78,6 +79,8 @@ public class RegionDaoImpl implements RegionDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Region region = (Region) session.load(Region.class, new Long (id));
+
+		Hibernate.initialize(region.getDistrict());
 		
 		logger.info("Region get by id == "+region);
 
