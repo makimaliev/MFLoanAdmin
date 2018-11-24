@@ -26,16 +26,23 @@ public class BankData {
     @Column(name="name", nullable=false)
     private String name;
 
-    @Column(name="description", nullable=false)
+    @Column(name="description")
     private String description;
 
-    @Column(name="bik", nullable=false)
+    @Column(name="bik")
     private String bik;
     
-    @Column(name="account_number", nullable=false)
+    @Column(name="account_number")
     private String account_number;
-    
-    @Column(name="is_primary")
+
+	@Column(name="recipient")
+	private String recipient;
+
+	@Column(name="recipient_bank")
+	private String recipient_bank;
+
+
+	@Column(name="is_primary")
     private Boolean isPrimary;
 
 
@@ -95,10 +102,29 @@ public class BankData {
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
-    
-    
-    
-    
-    
-    
+
+
+	public String getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
+	}
+
+	public String getRecipient_bank() {
+		return recipient_bank;
+	}
+
+	public void setRecipient_bank(String recipient_bank) {
+		this.recipient_bank = recipient_bank;
+	}
+
+	public Boolean getPrimary() {
+		return isPrimary;
+	}
+
+	public void setPrimary(Boolean primary) {
+		isPrimary = primary;
+	}
 }
