@@ -31,10 +31,10 @@ public class Role {
     @Column(name="name")
     private String name;
     
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
     private Set<User> users = new HashSet<User>(0);
     
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "role_permission", joinColumns = { 
 			@JoinColumn(name = "role_id", nullable = false, updatable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "permission_id", 

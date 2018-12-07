@@ -33,11 +33,11 @@ public class Attachment {
     @Column(name="name", nullable=false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional=true)
+    @ManyToOne(fetch = FetchType.LAZY, optional=true)
     @JoinColumn(name="information_id")
     private Information information;
     
-    @OneToMany(mappedBy="attachment", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(mappedBy="attachment", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     private Set<SystemFile> systemFile = new HashSet<SystemFile>();      
 
 	public long getId() {

@@ -21,14 +21,14 @@ import javax.persistence.Table;
 @Table(name="organization")
 public class Organization extends BaseEntity {
  
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<BankData> bankData = new HashSet<BankData>();    
     
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Department> department = new HashSet<Department>();
     
     
-    @ManyToOne(targetEntity=OrgForm.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=OrgForm.class, fetch = FetchType.LAZY)
     @JoinColumn(name="org_form_id")
     OrgForm orgForm; 
     

@@ -31,7 +31,7 @@ public class ValidationTerm {
     private long min_length;
     
     
-    @ManyToOne(fetch = FetchType.EAGER , optional=true)
+    @ManyToOne(fetch = FetchType.LAZY , optional=true)
     @JoinColumn(name="object_field_id")
     private ObjectField objectField;
    

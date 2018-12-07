@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
@@ -16,97 +17,26 @@ import kg.gov.mf.loan.admin.org.model.*;
 
 @Repository("personDao")
 public class PersonDaoImpl extends GenericDaoAdminImpl<Person> implements PersonDao {
-     
-//    private static final Logger logger = LoggerFactory.getLogger(PersonDaoImpl.class);
-//
-//    @Autowired
-//    private SessionFactory sessionFactory;
-//
-//    public void setSessionFactory(SessionFactory sf){
-//        this.sessionFactory = sf;
-//    }
-//
-//
-//    @Autowired
-//    public PersonDaoImpl(SessionFactory sessionFactory) {
-//        this.sessionFactory = sessionFactory;
-//    }
-//
-//
-//
-//
-//
-//	@Override
-//	public void create(Person person) {
-//
-//		Session session = this.sessionFactory.getCurrentSession();
-//		session.persist(person);
-//
-//		logger.info("Person added == "+person);
-//
-//	}
-//
-//
-//	@Override
-//	public void edit(Person person) {
-//
-//
-//		Session session = this.sessionFactory.getCurrentSession();
-//		session.update(person);
-//
-//		logger.info("Person edited == "+person);
-//	}
-//
-//
-//	@Override
-//	public void deleteById(long id) {
-//
-//		Session session = this.sessionFactory.getCurrentSession();
-//		Person person = (Person) session.load(Person.class, new Long (id));
-//		if(person!=null)
-//		{
-//			session.delete(person);
-//		}
-//
-//		logger.info("Person deleted == "+person);
-//
-//	}
-//
-//
-//	@Override
-//	public Person findById(long id) {
-//
-//		Session session = this.sessionFactory.getCurrentSession();
-//		Person person = (Person) session.load(Person.class, new Long (id));
-//
-//		logger.info("Person get by id == "+person);
-//
-//		return person ;
-//	}
-//
-//
-//
-//    @SuppressWarnings("unchecked")
-//    @Override
-//    public List<Person> findAll() {
-//        Session session = this.sessionFactory.getCurrentSession();
-//        List<Person> personsList = session.createQuery("from Person").list();
-//        return personsList;
-//    }
-//
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public List<Person> findLast100() {
-//		Session session = this.sessionFactory.getCurrentSession();
-//
-//		Criteria criteria = session.createCriteria(Person.class);
-//
-//		criteria.addOrder(Order.desc("id"));
-//
-//		criteria.setMaxResults(100);
-//
-//		return criteria.list();
-//	}
-//
+
+    @Override
+    public Person findById(Long id)
+    {
+        Person person = super.findById(id);
+
+        Hibernate.initialize(person.getIdentityDoc());
+        Hibernate.initialize(person.getIdentityDoc().getIdentityDocDetails());
+        Hibernate.initialize(person.getIdentityDoc().getIdentityDocType());
+        Hibernate.initialize(person.getIdentityDoc().getIdentityDocGivenBy());
+        Hibernate.initialize(person.getContact());
+        Hibernate.initialize(person.getAddress());
+        Hibernate.initialize(person.getAddress().getAddressDetails());
+        Hibernate.initialize(person.getAddress().getVillage());
+        Hibernate.initialize(person.getAddress().getDistrict());
+        Hibernate.initialize(person.getAddress().getAokmotu());
+        Hibernate.initialize(person.getAddress().getRegion());
+        Hibernate.initialize(person.getAddress());
+
+        return person;
+    }
 
 }

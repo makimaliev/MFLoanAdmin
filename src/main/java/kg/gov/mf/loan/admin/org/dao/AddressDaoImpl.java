@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,12 @@ public class AddressDaoImpl implements AddressDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Address address = (Address) session.load(Address.class, new Long (id));
-		
-		logger.info("Address get by id == "+address);
+
+		Hibernate.initialize(address.getRegion());
+		Hibernate.initialize(address.getAokmotu());
+		Hibernate.initialize(address.getDistrict());
+		Hibernate.initialize(address.getVillage());
+		Hibernate.initialize(address.getAddressDetails());
 
 		return address ;
 	}

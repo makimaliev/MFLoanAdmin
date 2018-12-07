@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,8 @@ public class PhoneDaoImpl implements PhoneDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Phone phone = (Phone) session.load(Phone.class, new Long (id));
-		
-		logger.info("Phone get by id == "+phone);
+
+		Hibernate.initialize(phone.getContact());
 
 		return phone ;
 	}

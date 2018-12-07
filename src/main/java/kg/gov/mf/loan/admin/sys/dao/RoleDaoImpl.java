@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,8 @@ public class RoleDaoImpl implements RoleDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Role role = (Role) session.load(Role.class, new Long (id));
-		
-		logger.info("Role get by id == "+role);
+
+		Hibernate.initialize(role.getPermissions());
 
 		return role ;
 	}

@@ -24,7 +24,7 @@ public class Village {
     @Column(name="code", nullable=false)
     private String code;
     
-    @ManyToOne(targetEntity=Aokmotu.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Aokmotu.class, fetch = FetchType.LAZY)
     @JoinColumn(name="aokmotu_id")
     Aokmotu aokmotu; 
     

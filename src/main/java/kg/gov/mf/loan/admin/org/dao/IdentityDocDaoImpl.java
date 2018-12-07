@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,10 @@ public class IdentityDocDaoImpl implements IdentityDocDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		IdentityDoc identityDoc = (IdentityDoc) session.load(IdentityDoc.class, new Long (id));
-		
-		logger.info("IdentityDoc get by id == "+identityDoc);
+
+		Hibernate.initialize(identityDoc.getIdentityDocGivenBy());
+		Hibernate.initialize(identityDoc.getIdentityDocType());
+		Hibernate.initialize(identityDoc.getIdentityDocDetails());
 
 		return identityDoc ;
 	}

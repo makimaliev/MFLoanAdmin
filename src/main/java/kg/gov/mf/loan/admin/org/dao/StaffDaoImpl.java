@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
@@ -80,8 +81,13 @@ public class StaffDaoImpl implements StaffDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Staff staff = (Staff) session.load(Staff.class, new Long (id));
-		
-		logger.info("Staff get by id == "+staff);
+
+		Hibernate.initialize(staff.getDepartment());
+		Hibernate.initialize(staff.getUser());
+		Hibernate.initialize(staff.getPosition());
+		Hibernate.initialize(staff.getOrganization());
+		Hibernate.initialize(staff.getEmploymentHistory());
+		Hibernate.initialize(staff.getPerson());
 
 		return staff ;
 	}
@@ -100,10 +106,19 @@ public class StaffDaoImpl implements StaffDao {
 		criteria.add(Restrictions.eq("department.id", department.getId()));
 		criteria.setMaxResults(1);
 
-		System.out.println(department.getPosition().size());
 		criteria.add(Restrictions.eq("position.id", department.getPosition().iterator().next().getId()));
 
-		return (Staff) criteria.uniqueResult() ;
+		Staff staff = (Staff) criteria.uniqueResult();
+
+		Hibernate.initialize(staff.getDepartment());
+		Hibernate.initialize(staff.getUser());
+		Hibernate.initialize(staff.getPosition());
+		Hibernate.initialize(staff.getOrganization());
+		Hibernate.initialize(staff.getEmploymentHistory());
+		Hibernate.initialize(staff.getPerson());
+
+
+		return staff ;
 
 	}
 

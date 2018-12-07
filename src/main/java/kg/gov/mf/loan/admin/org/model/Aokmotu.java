@@ -29,7 +29,7 @@ public class Aokmotu {
     @Column(name="code", nullable=false)
     private String code;
     
-    @ManyToOne(targetEntity=District.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=District.class, fetch = FetchType.LAZY)
     @JoinColumn(name="district_id")
     District district; 
     

@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,8 @@ public class ObjectEventDaoImpl implements ObjectEventDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		ObjectEvent objectEvent = (ObjectEvent) session.load(ObjectEvent.class, new Long (id));
-		
-		logger.info("ObjectEvent get by id == "+objectEvent);
+
+		Hibernate.initialize(objectEvent.getObjectType());
 
 		return objectEvent ;
 	}

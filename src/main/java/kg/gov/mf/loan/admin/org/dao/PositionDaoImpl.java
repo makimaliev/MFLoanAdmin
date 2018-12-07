@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -78,8 +79,8 @@ public class PositionDaoImpl implements PositionDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Position position = (Position) session.load(Position.class, new Long (id));
-		
-		logger.info("Position get by id == "+position);
+
+		Hibernate.initialize(position.getDepartment());
 
 		return position ;
 	}

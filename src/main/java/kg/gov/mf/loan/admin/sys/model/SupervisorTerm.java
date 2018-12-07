@@ -33,15 +33,15 @@ public class SupervisorTerm {
     @Column(name="name")
     private String name;
 
-    @ManyToOne(targetEntity=Region.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Region.class, fetch = FetchType.LAZY)
     @JoinColumn(name="region_id")
     Region region; 
     
-    @ManyToOne(targetEntity=District.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=District.class, fetch = FetchType.LAZY)
     @JoinColumn(name="district_id")
     District district; 
 
-    @ManyToOne(targetEntity=Department.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Department.class, fetch = FetchType.LAZY)
     @JoinColumn(name="department_id")
     Department department;
     
@@ -52,7 +52,7 @@ public class SupervisorTerm {
     private long work_sector_id;
     
     
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "supervisorTerms")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "supervisorTerms")
     private Set<User> users = new HashSet<User>(0);
     
 	public long getId() {

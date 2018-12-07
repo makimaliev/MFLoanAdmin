@@ -36,11 +36,11 @@ public class EmploymentHistory {
     @Temporal(TemporalType.DATE)
     private Date date;    
     
-    @OneToOne(mappedBy = "employmentHistory", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "employmentHistory", fetch = FetchType.LAZY)
     @JoinColumn(name="staff_id")
     Staff staff;
 
-    @OneToMany(mappedBy = "employmentHistory", cascade = CascadeType.MERGE, fetch = FetchType.EAGER, orphanRemoval=true)
+    @OneToMany(mappedBy = "employmentHistory", cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval=true)
     private Set<EmploymentHistoryEvent> employmentHistoryEvent = new HashSet<EmploymentHistoryEvent>();
 
 	public long getId() {

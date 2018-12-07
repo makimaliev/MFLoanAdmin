@@ -37,11 +37,11 @@ public class IdentityDoc {
     @Column(name="pin", nullable=false)
     private String pin;    
     
-    @ManyToOne(targetEntity=IdentityDocType.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=IdentityDocType.class, fetch = FetchType.LAZY)
     @JoinColumn(name="identity_doc_type_id")
     IdentityDocType identityDocType;     
     
-    @ManyToOne(targetEntity=IdentityDocGivenBy.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=IdentityDocGivenBy.class, fetch = FetchType.LAZY)
     @JoinColumn(name="identity_doc_given_by_id")
     IdentityDocGivenBy identityDocGivenBy;
     
@@ -49,7 +49,7 @@ public class IdentityDoc {
     @Temporal(TemporalType.DATE)
     private Date date;
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name="identity_doc_details_id")
     IdentityDocDetails identityDocDetails;     
 

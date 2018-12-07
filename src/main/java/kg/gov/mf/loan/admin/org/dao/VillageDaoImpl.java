@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -91,8 +92,8 @@ public class VillageDaoImpl implements VillageDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Village village = (Village) session.load(Village.class, new Long (id));
-		
-		logger.info("Village get by id == "+village);
+
+		Hibernate.initialize(village.getAokmotu());
 
 		return village ;
 	}

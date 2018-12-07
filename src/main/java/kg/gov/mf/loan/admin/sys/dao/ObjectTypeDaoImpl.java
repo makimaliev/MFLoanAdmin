@@ -3,6 +3,7 @@ package kg.gov.mf.loan.admin.sys.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -77,8 +78,10 @@ public class ObjectTypeDaoImpl implements ObjectTypeDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		ObjectType objectType = (ObjectType) session.load(ObjectType.class, new Long (id));
-		
-		logger.info("ObjectType get by id == "+objectType);
+
+		Hibernate.initialize(objectType.getObjectEvent());
+		Hibernate.initialize(objectType.getFixTerm());
+		Hibernate.initialize(objectType.getObjectField());
 
 		return objectType ;
 	}

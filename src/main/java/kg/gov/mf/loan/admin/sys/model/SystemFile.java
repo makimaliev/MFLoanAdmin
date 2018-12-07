@@ -36,7 +36,7 @@ public class SystemFile {
     @Column(name="path", nullable=false)
     private String path;
     
-    @ManyToOne(fetch = FetchType.EAGER , optional=true)
+    @ManyToOne(fetch = FetchType.LAZY , optional=true)
     @JoinColumn(name="attachment_id")
     private Attachment attachment;
 

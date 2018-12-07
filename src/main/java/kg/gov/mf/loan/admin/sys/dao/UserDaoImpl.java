@@ -4,6 +4,7 @@ import java.util.List;
 
 import kg.gov.mf.loan.admin.org.model.Staff;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -80,6 +81,11 @@ public class UserDaoImpl implements UserDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		User user = (User) session.load(User.class, new Long (id));
+
+		Hibernate.initialize(user.getStaff());
+		Hibernate.initialize(user.getSupervisorTerms());
+		Hibernate.initialize(user.getRoles());
+
 		
 		logger.info("User get by id == "+user);
 
@@ -93,8 +99,14 @@ public class UserDaoImpl implements UserDao {
 		Criteria criteria = session.createCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 
+		User user = (User)criteria.uniqueResult();
 
-		return (User)criteria.uniqueResult() ;
+		Hibernate.initialize(user.getStaff());
+		Hibernate.initialize(user.getSupervisorTerms());
+		Hibernate.initialize(user.getRoles());
+
+
+		return user;
     
     }
 
@@ -106,8 +118,14 @@ public class UserDaoImpl implements UserDao {
 		criteria.createAlias("staff", "staff");
 		criteria.add(Restrictions.eq("staff.id", staff.getId()));
 
+		User user = (User)criteria.uniqueResult();
 
-		return (User)criteria.uniqueResult() ;
+		Hibernate.initialize(user.getStaff());
+		Hibernate.initialize(user.getSupervisorTerms());
+		Hibernate.initialize(user.getRoles());
+
+
+		return user;
 
 	}
 	

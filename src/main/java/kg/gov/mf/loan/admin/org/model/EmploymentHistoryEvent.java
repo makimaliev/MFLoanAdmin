@@ -35,13 +35,13 @@ public class EmploymentHistoryEvent {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @ManyToOne(targetEntity=EmploymentHistory.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=EmploymentHistory.class, fetch = FetchType.LAZY)
     @JoinColumn(name="employmentHistory_id")
     EmploymentHistory employmentHistory;
     
     
     
-    @ManyToOne(targetEntity=EmploymentHistoryEventType.class, fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @ManyToOne(targetEntity=EmploymentHistoryEventType.class, fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     @JoinColumn(name="employment_history_event_type_id")
     EmploymentHistoryEventType employmentHistoryEventType; 
     

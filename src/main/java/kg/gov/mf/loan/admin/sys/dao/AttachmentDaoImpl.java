@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,9 @@ public class AttachmentDaoImpl implements AttachmentDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Attachment attachment = (Attachment) session.load(Attachment.class, new Long (id));
-		
-		logger.info("Attachment get by id == "+attachment);
+
+		Hibernate.initialize(attachment.getInformation());
+		Hibernate.initialize(attachment.getSystemFile());
 
 		return attachment ;
 	}

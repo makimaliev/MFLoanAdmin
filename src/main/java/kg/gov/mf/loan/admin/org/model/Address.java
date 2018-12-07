@@ -22,20 +22,20 @@ public class Address {
     @Column(name="line", nullable=false)
     private String line;
     
-    @ManyToOne(targetEntity=Region.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Region.class, fetch = FetchType.LAZY)
     @JoinColumn(name="region_id")
     Region region;  
     
-    @ManyToOne(targetEntity=District.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=District.class, fetch = FetchType.LAZY)
     @JoinColumn(name="district_id")
     District district;  
     
     
-    @ManyToOne(targetEntity=Aokmotu.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Aokmotu.class, fetch = FetchType.LAZY)
     @JoinColumn(name="aokmotu_id")
     Aokmotu aokmotu;  
     
-    @ManyToOne(targetEntity=Village.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Village.class, fetch = FetchType.LAZY)
     @JoinColumn(name="village_id")
     Village village;  
     

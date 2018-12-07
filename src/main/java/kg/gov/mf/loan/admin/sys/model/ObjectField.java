@@ -32,11 +32,11 @@ public class ObjectField {
     @Column(name="method_name")
     private String methodName;
     
-    @ManyToOne(fetch = FetchType.EAGER , optional=true)
+    @ManyToOne(fetch = FetchType.LAZY , optional=true)
     @JoinColumn(name="object_type_id")
     private ObjectType objectType;
     
-    @OneToMany(mappedBy="objectField", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval=true)
+    @OneToMany(mappedBy="objectField", fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval=true)
     private Set<ValidationTerm> validationTerm = new HashSet<ValidationTerm>(); 
    
 	public long getId() {

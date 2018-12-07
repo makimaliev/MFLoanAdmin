@@ -96,6 +96,7 @@ public class AokmotuDaoImpl implements AokmotuDao {
 		Aokmotu aokmotu = (Aokmotu) session.load(Aokmotu.class, new Long (id));
 
 		Hibernate.initialize(aokmotu.getVillage());
+		Hibernate.initialize(aokmotu.getDistrict());
 
 		logger.info("Aokmotu get by id == "+aokmotu);
 

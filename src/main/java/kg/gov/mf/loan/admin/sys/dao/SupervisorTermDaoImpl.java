@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,10 @@ public class SupervisorTermDaoImpl implements SupervisorTermDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		SupervisorTerm supervisorTerm = (SupervisorTerm) session.load(SupervisorTerm.class, new Long (id));
-		
-		logger.info("SupervisorTerm get by id == "+supervisorTerm);
+
+		Hibernate.initialize(supervisorTerm.getDistrict());
+		Hibernate.initialize(supervisorTerm.getDepartment());
+		Hibernate.initialize(supervisorTerm.getRegion());
 
 		return supervisorTerm ;
 	}

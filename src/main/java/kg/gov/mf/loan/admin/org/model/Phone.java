@@ -21,7 +21,7 @@ public class Phone {
     @Column(name="name", nullable=false)
     private String name;
     
-    @ManyToOne(targetEntity=Contact.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Contact.class, fetch = FetchType.LAZY)
     @JoinColumn(name="contact_id")
     Contact contact;    
 

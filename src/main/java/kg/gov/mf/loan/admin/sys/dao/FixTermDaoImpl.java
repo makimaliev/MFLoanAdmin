@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,8 @@ public class FixTermDaoImpl implements FixTermDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		FixTerm fixTerm = (FixTerm) session.load(FixTerm.class, new Long (id));
-		
-		logger.info("FixTerm get by id == "+fixTerm);
+
+		Hibernate.initialize(fixTerm.getObjectType());
 
 		return fixTerm ;
 	}

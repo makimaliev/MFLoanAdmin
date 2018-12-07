@@ -25,7 +25,7 @@ public class Permission {
     @Column(name="name")
     private String name;
     
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "permissions")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "permissions")
     private Set<Role> roles = new HashSet<Role>(0);
 
 	public long getId() {

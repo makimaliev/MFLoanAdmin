@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -93,8 +94,8 @@ public class SystemFileDaoImpl implements SystemFileDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		SystemFile systemFile = (SystemFile) session.load(SystemFile.class, new Long (id));
-		
-		logger.info("SystemFile get by id == "+systemFile);
+
+		Hibernate.initialize(systemFile.getAttachment());
 
 		return systemFile ;
 	}

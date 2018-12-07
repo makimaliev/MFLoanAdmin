@@ -24,7 +24,7 @@ public class FixTerm {
     @Column(name="description")
     private String description;
     
-    @ManyToOne(fetch = FetchType.EAGER , optional=true)
+    @ManyToOne(fetch = FetchType.LAZY , optional=true)
     @JoinColumn(name="object_type_id")
     private ObjectType objectType;
    

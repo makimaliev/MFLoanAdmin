@@ -29,7 +29,7 @@ public class District {
     @Column(name="code", nullable=false)
     private String code;
     
-    @ManyToOne(targetEntity=Region.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Region.class, fetch = FetchType.LAZY)
     @JoinColumn(name="region_id")
     Region region;    
     

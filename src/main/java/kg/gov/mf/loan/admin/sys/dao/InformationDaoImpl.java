@@ -3,6 +3,7 @@ package kg.gov.mf.loan.admin.sys.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -80,8 +81,10 @@ public class InformationDaoImpl implements InformationDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Information information = (Information) session.load(Information.class, new Long (id));
-		
-		logger.info("Information get by id == "+information);
+
+		Hibernate.initialize(information.getChildInformation());
+		Hibernate.initialize(information.getAttachment());
+		Hibernate.initialize(information.getParentInformation());
 
 		return information ;
 	}

@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,9 @@ public class ValidationTermDaoImpl implements ValidationTermDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		ValidationTerm validationTerm = (ValidationTerm) session.load(ValidationTerm.class, new Long (id));
-		
-		logger.info("ValidationTerm get by id == "+validationTerm);
+
+		Hibernate.initialize(validationTerm.getObjectField());
+		Hibernate.initialize(validationTerm.getObjectField().getObjectType());
 
 		return validationTerm ;
 	}

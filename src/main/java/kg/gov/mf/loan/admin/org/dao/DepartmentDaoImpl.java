@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
@@ -91,8 +92,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Department department = (Department) session.load(Department.class, new Long (id));
-		
-		logger.info("Department get by id == "+department);
+
+		Hibernate.initialize(department.getPosition());
+		Hibernate.initialize(department.getOrganization());
+
 
 		return department ;
 	}

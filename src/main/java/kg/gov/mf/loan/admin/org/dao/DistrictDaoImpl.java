@@ -92,6 +92,7 @@ public class DistrictDaoImpl implements DistrictDao {
 		District district = (District) session.load(District.class, new Long (id));
 
 		Hibernate.initialize(district.getAokmotu());
+		Hibernate.initialize(district.getRegion());
 		
 		logger.info("District get by id == "+district);
 

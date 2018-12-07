@@ -49,7 +49,7 @@ public class Information {
     private Date date;
     
 
-    @OneToMany(mappedBy="information", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(mappedBy="information", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     private Set<Attachment> attachment = new HashSet<Attachment>();  
     
     
@@ -61,11 +61,11 @@ public class Information {
     
     
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name="parent_information_id")
     public Information parentInformation;
 
-    @OneToMany(mappedBy="parentInformation", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(mappedBy="parentInformation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     public List<Information> childInformation = new ArrayList<Information>();
     
     

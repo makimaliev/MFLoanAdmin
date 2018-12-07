@@ -21,7 +21,7 @@ public class Position {
     @Column(name="name", nullable=false)
     private String name;
 
-    @ManyToOne(targetEntity=Department.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Department.class, fetch = FetchType.LAZY)
     @JoinColumn(name="department_id")
     Department department;
 

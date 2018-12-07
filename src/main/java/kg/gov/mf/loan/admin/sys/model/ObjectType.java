@@ -37,14 +37,14 @@ public class ObjectType {
     private String code;
     
     
-    @OneToMany(mappedBy="objectType", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval=true)
+    @OneToMany(mappedBy="objectType", fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval=true)
     private Set<ObjectField> objectField = new HashSet<ObjectField>(); 
 
     
-    @OneToMany(mappedBy="objectType", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval=true)
+    @OneToMany(mappedBy="objectType", fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval=true)
     private Set<ObjectEvent> objectEvent = new HashSet<ObjectEvent>(); 
 
-    @OneToMany(mappedBy="objectType", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval=true)
+    @OneToMany(mappedBy="objectType", fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval=true)
     private Set<FixTerm> fixTerm = new HashSet<FixTerm>();     
     
 	public long getId() {

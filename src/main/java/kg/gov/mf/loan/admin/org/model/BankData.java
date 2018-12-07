@@ -19,7 +19,7 @@ public class BankData {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
  
-    @ManyToOne(targetEntity=Organization.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity=Organization.class, fetch = FetchType.LAZY)
     @JoinColumn(name="organization_id")
     Organization organization;      
     

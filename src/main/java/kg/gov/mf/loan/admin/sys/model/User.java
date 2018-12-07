@@ -30,14 +30,14 @@ public class User {
     @Column(name="enabled")
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_role", joinColumns = { 
 			@JoinColumn(name = "user_id", nullable = false, updatable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "role_id", 
 					nullable = false, updatable = false) })
     private Set<Role> roles = new HashSet<Role>(0);
     
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_supervisor_term", joinColumns = { 
 			@JoinColumn(name = "user_id", nullable = false, updatable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "supervisor_term_id", 

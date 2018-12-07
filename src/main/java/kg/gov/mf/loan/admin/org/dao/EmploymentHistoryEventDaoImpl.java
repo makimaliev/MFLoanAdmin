@@ -1,11 +1,9 @@
 package kg.gov.mf.loan.admin.org.dao;
 
 import java.util.List;
- 
 
 
-
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -79,8 +77,9 @@ public class EmploymentHistoryEventDaoImpl implements EmploymentHistoryEventDao 
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		EmploymentHistoryEvent employmentHistoryEvent = (EmploymentHistoryEvent) session.load(EmploymentHistoryEvent.class, new Long (id));
-		
-		logger.info("EmploymentHistoryEvent get by id == "+employmentHistoryEvent);
+
+		Hibernate.initialize(employmentHistoryEvent.getEmploymentHistoryEventType());
+		Hibernate.initialize(employmentHistoryEvent.getEmploymentHistory());
 
 		return employmentHistoryEvent ;
 	}
