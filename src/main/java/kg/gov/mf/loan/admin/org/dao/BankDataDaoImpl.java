@@ -3,6 +3,7 @@ package kg.gov.mf.loan.admin.org.dao;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -91,6 +92,8 @@ public class BankDataDaoImpl implements BankDataDao {
 		BankData bankData = (BankData) session.load(BankData.class, new Long (id));
 		
 		logger.info("BankData get by id == "+bankData);
+
+		Hibernate.initialize(bankData.getOrganization());
 
 		return bankData ;
 	}
