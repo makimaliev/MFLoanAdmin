@@ -44,7 +44,7 @@ public class User {
 					nullable = false, updatable = false) })
     private Set<SupervisorTerm> supervisorTerms = new HashSet<SupervisorTerm>(0);
 
-	@OneToOne(targetEntity=Staff.class, fetch = FetchType.EAGER)
+	@ManyToOne(targetEntity=Staff.class, fetch = FetchType.EAGER)
 	@JoinColumn(name="staff_id")
 	Staff staff;
 

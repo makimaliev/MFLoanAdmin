@@ -30,8 +30,8 @@ public class Staff {
     @Column(name="name", nullable=false)
     private String name;
 
-	@OneToOne(mappedBy = "staff")
-	User user;
+//	@OneToOne(mappedBy = "staff")
+//	User user;
 
 	@Column(name="enabled")
     private boolean enabled;  
@@ -121,13 +121,13 @@ public class Staff {
 		this.employmentHistory = employmentHistory;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 	@Override
 	public int hashCode() {
