@@ -83,7 +83,7 @@ public class StaffDaoImpl implements StaffDao {
 		Staff staff = (Staff) session.load(Staff.class, new Long (id));
 
 		Hibernate.initialize(staff.getDepartment());
-//		Hibernate.initialize(staff.getUser());
+		Hibernate.initialize(staff.getUser());
 		Hibernate.initialize(staff.getPosition());
 		Hibernate.initialize(staff.getOrganization());
 		Hibernate.initialize(staff.getEmploymentHistory());
@@ -111,7 +111,7 @@ public class StaffDaoImpl implements StaffDao {
 		Staff staff = (Staff) criteria.uniqueResult();
 
 		Hibernate.initialize(staff.getDepartment());
-//		Hibernate.initialize(staff.getUser());
+		Hibernate.initialize(staff.getUser());
 		Hibernate.initialize(staff.getPosition());
 		Hibernate.initialize(staff.getOrganization());
 		Hibernate.initialize(staff.getEmploymentHistory());
