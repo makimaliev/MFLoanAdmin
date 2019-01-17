@@ -59,4 +59,10 @@ public class StaffServiceJpaImpl implements StaffService {
 	public List<Staff> findAllByDepartment(Department department) {
 		return this.staffDao.findAllByDepartment(department);
 	}
+
+	@Override
+	@Transactional
+	public Staff findByPersonId(Long id) {
+		return this.staffDao.findByPersonId(id);
+	}
 }

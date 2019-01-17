@@ -20,4 +20,6 @@ public interface StaffService {
 	public List<Staff> findAll();
 
 	public List<Staff> findAllByDepartment(Department department);
+
+	public Staff findByPersonId(Long id);
 }

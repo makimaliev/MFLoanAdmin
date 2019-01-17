@@ -23,4 +23,6 @@ public interface StaffDao {
 
 	public List<Staff> findAllByDepartment(Department department);
 
+	public Staff findByPersonId(Long id);
+
 }

@@ -136,8 +136,18 @@ public class StaffDaoImpl implements StaffDao {
 		return criteria.list();
 	}
 
-	
-    @SuppressWarnings("unchecked")
+	@Override
+	public Staff findByPersonId(Long id) {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Staff.class);
+		criteria.add(Restrictions.eq("person_id",id));
+
+		return (Staff) criteria.uniqueResult();
+	}
+
+
+	@SuppressWarnings("unchecked")
     @Override
     public List<Staff> findAll() {
         Session session = this.sessionFactory.getCurrentSession();
