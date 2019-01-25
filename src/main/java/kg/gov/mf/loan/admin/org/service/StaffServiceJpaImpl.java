@@ -62,7 +62,7 @@ public class StaffServiceJpaImpl implements StaffService {
 
 	@Override
 	@Transactional
-	public Staff findByPersonId(Long id) {
-		return this.staffDao.findByPersonId(id);
+	public Staff findByPerson(Person person) {
+		return this.staffDao.findByPerson(person);
 	}
 }

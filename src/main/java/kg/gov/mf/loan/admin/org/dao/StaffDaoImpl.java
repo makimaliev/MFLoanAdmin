@@ -137,11 +137,12 @@ public class StaffDaoImpl implements StaffDao {
 	}
 
 	@Override
-	public Staff findByPersonId(Long id) {
+	public Staff findByPerson(Person person) {
 		Session session = this.sessionFactory.getCurrentSession();
 
 		Criteria criteria = session.createCriteria(Staff.class);
-		criteria.add(Restrictions.eq("person_id",id));
+		criteria.createAlias("person", "person");
+		criteria.add(Restrictions.eq("person.id", person.getId()));
 
 		return (Staff) criteria.uniqueResult();
 	}

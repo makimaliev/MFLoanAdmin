@@ -21,5 +21,5 @@ public interface StaffService {
 
 	public List<Staff> findAllByDepartment(Department department);
 
-	public Staff findByPersonId(Long id);
+	public Staff findByPerson(Person person);
 }
