@@ -1,5 +1,6 @@
 package kg.gov.mf.loan.admin.org.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import kg.gov.mf.loan.admin.sys.model.User;
 
 import java.util.HashSet;
@@ -30,6 +31,7 @@ public class Staff {
     @Column(name="name", nullable=false)
     private String name;
 
+	@JsonBackReference
 	@OneToOne(mappedBy = "staff")
 	User user;
 

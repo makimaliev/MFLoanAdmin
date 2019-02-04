@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kg.gov.mf.loan.admin.org.model.Region;
 import kg.gov.mf.loan.admin.org.model.Staff;
 import org.hibernate.annotations.Cache;
@@ -44,6 +45,7 @@ public class User {
 					nullable = false, updatable = false) })
     private Set<SupervisorTerm> supervisorTerms = new HashSet<SupervisorTerm>(0);
 
+	@JsonManagedReference
 	@OneToOne(targetEntity=Staff.class, fetch = FetchType.EAGER)
 	@JoinColumn(name="staff_id")
 	Staff staff;
