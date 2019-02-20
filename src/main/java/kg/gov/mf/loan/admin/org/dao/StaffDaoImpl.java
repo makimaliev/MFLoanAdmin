@@ -88,6 +88,7 @@ public class StaffDaoImpl implements StaffDao {
 		Hibernate.initialize(staff.getOrganization());
 		Hibernate.initialize(staff.getEmploymentHistory());
 		Hibernate.initialize(staff.getPerson());
+		Hibernate.initialize(staff.getPerson().getAddress());
 
 		return staff ;
 	}
