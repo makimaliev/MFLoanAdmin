@@ -1,26 +1,22 @@
 package kg.gov.mf.loan.admin.org.model;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name="person")
 public class Person extends BaseEntity {
- 
+
+	private String address_line2;
+
+	public String getAddress_line2() {
+		return address_line2;
+	}
+
+	public void setAddress_line2(String address_line2) {
+		this.address_line2 = address_line2;
+	}
 
 	@Override
 	public int hashCode() {

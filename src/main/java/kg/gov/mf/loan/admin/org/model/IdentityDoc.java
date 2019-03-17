@@ -1,22 +1,9 @@
 package kg.gov.mf.loan.admin.org.model;
 
-import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="identity_doc")
@@ -35,7 +22,11 @@ public class IdentityDoc {
     private String number;
     
     @Column(name="pin", nullable=false)
-    private String pin;    
+    private String pin;
+
+    @Column(name="given_by", nullable=true)
+    private String givenBy;
+
     
     @ManyToOne(targetEntity=IdentityDocType.class, fetch = FetchType.LAZY)
     @JoinColumn(name="identity_doc_type_id")
@@ -94,7 +85,13 @@ public class IdentityDoc {
 		this.pin = pin;
 	}
 
+	public String getGivenBy() {
+		return givenBy;
+	}
 
+	public void setGivenBy(String givenBy) {
+		this.givenBy = givenBy;
+	}
 
 	public IdentityDocType getIdentityDocType() {
 		return identityDocType;
