@@ -1,8 +1,6 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
-import java.util.List;
-
-
+import kg.gov.mf.loan.admin.sys.model.Attachment;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kg.gov.mf.loan.admin.sys.model.*;
+import java.util.List;
  
 @Repository
 public class AttachmentDaoImpl implements AttachmentDao {
@@ -80,6 +78,7 @@ public class AttachmentDaoImpl implements AttachmentDao {
 
 		Hibernate.initialize(attachment.getInformation());
 		Hibernate.initialize(attachment.getSystemFile());
+		Hibernate.initialize(attachment.getDocumentIds());
 
 		return attachment ;
 	}

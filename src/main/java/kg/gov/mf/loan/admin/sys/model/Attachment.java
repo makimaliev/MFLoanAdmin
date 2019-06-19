@@ -1,27 +1,8 @@
 package kg.gov.mf.loan.admin.sys.model;
 
-import java.util.Date;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import kg.gov.mf.loan.admin.org.model.BankData;
 
 @Entity
 @Table(name="attachment")
@@ -38,7 +19,11 @@ public class Attachment {
     private Information information;
     
     @OneToMany(mappedBy="attachment", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<SystemFile> systemFile = new HashSet<SystemFile>();      
+    private Set<SystemFile> systemFile = new HashSet<SystemFile>();
+
+	@Column(nullable = true)
+	@ElementCollection(targetClass=Long.class)
+    private Set<Long> documentIds=new HashSet<Long>();
 
 	public long getId() {
 		return id;
@@ -70,8 +55,13 @@ public class Attachment {
 
 	public void setSystemFile(Set<SystemFile> systemFile) {
 		this.systemFile = systemFile;
-	}    
+	}
 
-    
-  
+	public Set<Long> getDocumentIds() {
+		return documentIds;
+	}
+
+	public void setDocumentIds(Set<Long> documentIds) {
+		this.documentIds = documentIds;
+	}
 }
