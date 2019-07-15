@@ -1,10 +1,13 @@
 package kg.gov.mf.loan.admin.org.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @MappedSuperclass
 public abstract class GenericModelAdmin implements Serializable {
@@ -32,4 +35,22 @@ public abstract class GenericModelAdmin implements Serializable {
 	public void setVersion(long version) {
 		this.version = version;
 	}
+
+	@CreatedBy
+	@Column(name = "au_created_by", updatable = false)
+	private String auCreatedBy;
+
+	@CreatedDate
+	@Column(name = "au_created_date", updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date auCreatedDate;
+
+	@LastModifiedBy
+	@Column(name = "au_last_modified_by")
+	private String auLastModifiedBy;
+
+	@LastModifiedDate
+	@Column(name = "au_last_modified_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date auLastModifiedDate;
 }

@@ -1,5 +1,6 @@
 package kg.gov.mf.loan.admin.sys.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -14,6 +15,10 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import kg.gov.mf.loan.admin.org.model.Department;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 @Table(name="users")
@@ -49,6 +54,26 @@ public class User {
 	@OneToOne(targetEntity=Staff.class, fetch = FetchType.EAGER)
 	@JoinColumn(name="staff_id")
 	Staff staff;
+
+
+	@CreatedBy
+	@Column(name = "au_created_by", updatable = false)
+	private String auCreatedBy;
+
+	@CreatedDate
+	@Column(name = "au_created_date", updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date auCreatedDate;
+
+	@LastModifiedBy
+	@Column(name = "au_last_modified_by")
+	private String auLastModifiedBy;
+
+	@LastModifiedDate
+	@Column(name = "au_last_modified_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date auLastModifiedDate;
+
 
 	public long getId() {
 		return id;
