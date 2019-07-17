@@ -53,4 +53,36 @@ public abstract class GenericModelAdmin implements Serializable {
 	@Column(name = "au_last_modified_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date auLastModifiedDate;
+
+    public String getAuCreatedBy() {
+        return auCreatedBy;
+    }
+
+    public void setAuCreatedBy(String auCreatedBy) {
+        this.auCreatedBy = auCreatedBy;
+    }
+
+    public Date getAuCreatedDate() {
+        return auCreatedDate;
+    }
+
+    public void setAuCreatedDate(Date auCreatedDate) {
+        this.auCreatedDate = auCreatedDate;
+    }
+
+    public String getAuLastModifiedBy() {
+        return auLastModifiedBy;
+    }
+
+    public void setAuLastModifiedBy(String auLastModifiedBy) {
+        this.auLastModifiedBy = auLastModifiedBy;
+    }
+
+    public Date getAuLastModifiedDate() {
+        return auLastModifiedDate;
+    }
+
+    public void setAuLastModifiedDate(Date auLastModifiedDate) {
+        this.auLastModifiedDate = auLastModifiedDate;
+    }
 }

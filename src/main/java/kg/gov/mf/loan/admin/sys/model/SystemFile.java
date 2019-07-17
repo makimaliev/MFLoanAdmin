@@ -1,31 +1,12 @@
 package kg.gov.mf.loan.admin.sys.model;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import kg.gov.mf.loan.admin.org.model.BankData;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="system_file")
@@ -97,8 +78,36 @@ public class SystemFile {
 	public void setAttachment(Attachment attachment) {
 		this.attachment = attachment;
 	}
-    
-    
-    
-  
+
+	public String getAuCreatedBy() {
+		return auCreatedBy;
+	}
+
+	public void setAuCreatedBy(String auCreatedBy) {
+		this.auCreatedBy = auCreatedBy;
+	}
+
+	public Date getAuCreatedDate() {
+		return auCreatedDate;
+	}
+
+	public void setAuCreatedDate(Date auCreatedDate) {
+		this.auCreatedDate = auCreatedDate;
+	}
+
+	public String getAuLastModifiedBy() {
+		return auLastModifiedBy;
+	}
+
+	public void setAuLastModifiedBy(String auLastModifiedBy) {
+		this.auLastModifiedBy = auLastModifiedBy;
+	}
+
+	public Date getAuLastModifiedDate() {
+		return auLastModifiedDate;
+	}
+
+	public void setAuLastModifiedDate(Date auLastModifiedDate) {
+		this.auLastModifiedDate = auLastModifiedDate;
+	}
 }

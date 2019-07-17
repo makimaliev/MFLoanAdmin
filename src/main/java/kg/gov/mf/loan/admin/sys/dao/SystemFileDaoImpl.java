@@ -1,21 +1,20 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
-import java.util.List;
-import java.util.Set;
-
-import org.hibernate.Criteria;
+import kg.gov.mf.loan.admin.sys.model.Attachment;
+import kg.gov.mf.loan.admin.sys.model.SystemFile;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
-import kg.gov.mf.loan.admin.org.model.District;
-import kg.gov.mf.loan.admin.org.model.Region;
-import kg.gov.mf.loan.admin.sys.model.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
  
 @Repository
 public class SystemFileDaoImpl implements SystemFileDao {
@@ -43,6 +42,8 @@ public class SystemFileDaoImpl implements SystemFileDao {
 	public void create(SystemFile systemFile) {
 		
 		Session session = this.sessionFactory.getCurrentSession();
+		systemFile.setAuCreatedBy(getUser());
+		systemFile.setAuCreatedDate(new Date());
 		session.persist(systemFile);
 		
 		logger.info("SystemFile added == "+systemFile);
@@ -55,6 +56,9 @@ public class SystemFileDaoImpl implements SystemFileDao {
 		
 		
 		Session session = this.sessionFactory.getCurrentSession();
+
+		systemFile.setAuLastModifiedBy(getUser());
+		systemFile.setAuLastModifiedDate(new Date());
 		session.update(systemFile);
 		
 		logger.info("SystemFile edited == "+systemFile);
@@ -109,5 +113,16 @@ public class SystemFileDaoImpl implements SystemFileDao {
         List<SystemFile> systemFilesList = session.createQuery("from SystemFile").list();
         return systemFilesList;
     }
+
+	private String getUser(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication == null || !authentication.isAuthenticated()) {
+			return null;
+		}
+		else
+		{
+			return authentication.getName();
+		}
+	}
     
 }

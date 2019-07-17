@@ -1,21 +1,21 @@
 package kg.gov.mf.loan.admin.sys.service;
 
-import java.util.List;
-import java.util.Set;
-
 import kg.gov.mf.loan.admin.org.dao.DepartmentDao;
 import kg.gov.mf.loan.admin.org.dao.OrganizationDao;
 import kg.gov.mf.loan.admin.org.dao.StaffDao;
-import kg.gov.mf.loan.admin.org.model.*;
+import kg.gov.mf.loan.admin.org.model.Department;
+import kg.gov.mf.loan.admin.org.model.Organization;
+import kg.gov.mf.loan.admin.org.model.Person;
+import kg.gov.mf.loan.admin.org.model.Staff;
+import kg.gov.mf.loan.admin.org.service.GenericServiceAdminImpl;
+import kg.gov.mf.loan.admin.sys.dao.UserDao;
+import kg.gov.mf.loan.admin.sys.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kg.gov.mf.loan.admin.sys.dao.*;
-import kg.gov.mf.loan.admin.sys.model.*;
-
 @Service
-public class UserServiceJpaImpl implements UserService {
+public class UserServiceJpaImpl extends GenericServiceAdminImpl<User> implements UserService {
 	
 	@Autowired
     private UserDao userDao;
@@ -34,34 +34,12 @@ public class UserServiceJpaImpl implements UserService {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
- 
-    
 
 	@Override
-	@Transactional	
-	public void create(User user) {
-		this.userDao.create(user);
-		
-	}
-
-	@Override
-	@Transactional	
-	public void edit(User user) {
-		this.userDao.edit(user);
-		
-	}
-
-	@Override
-	@Transactional	
+	@Transactional
 	public void deleteById(long id) {
 		this.userDao.deleteById(id);
-		
-	}
 
-	@Override
-	@Transactional	
-	public User findById(long id) {
-		return this.userDao.findById(id);
 	}
 
 	@Override
@@ -104,12 +82,4 @@ public class UserServiceJpaImpl implements UserService {
 	{
 		return null;
 	}
-
-
-
-	@Override
-    @Transactional
-    public List<User> findAll() {
-        return this.userDao.findAll();
-    }
 }

@@ -1,31 +1,18 @@
 package kg.gov.mf.loan.admin.sys.model;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import kg.gov.mf.loan.admin.org.model.GenericModelAdmin;
+import kg.gov.mf.loan.admin.org.model.Staff;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import kg.gov.mf.loan.admin.org.model.Region;
-import kg.gov.mf.loan.admin.org.model.Staff;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import kg.gov.mf.loan.admin.org.model.Department;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-
 @Entity
 @Table(name="users")
-public class User {
- 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
+public class User extends GenericModelAdmin {
+
  
     @Column(name="username", unique=true, nullable=false)
     private String username;
@@ -56,32 +43,6 @@ public class User {
 	Staff staff;
 
 
-	@CreatedBy
-	@Column(name = "au_created_by", updatable = false)
-	private String auCreatedBy;
-
-	@CreatedDate
-	@Column(name = "au_created_date", updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date auCreatedDate;
-
-	@LastModifiedBy
-	@Column(name = "au_last_modified_by")
-	private String auLastModifiedBy;
-
-	@LastModifiedDate
-	@Column(name = "au_last_modified_date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date auLastModifiedDate;
-
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -133,14 +94,14 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled;
+		return "User [id=" + super.getId() + ", username=" + username + ", password=" + password + ", enabled=" + enabled;
 	}
 
 	
 	@Override
 	public int hashCode() {
 		int hash = 5;
-		hash = 83 * hash + Objects.hashCode(this.id);
+		hash = 83 * hash + Objects.hashCode(super.getId());
 		return hash;
 	}
 
