@@ -31,6 +31,18 @@ public class UserDaoImpl extends GenericDaoAdminImpl<User> implements UserDao {
     }
 
 	@Override
+	public User findById(Long userId){
+
+    	User user=super.findById(userId);
+    	Hibernate.initialize(user.getRoles());
+    	Hibernate.initialize(user.getSupervisorTerms());
+
+    	return user;
+	}
+
+
+
+	@Override
 	public void deleteById(long id) {
 
 		Session session = this.sessionFactory.getCurrentSession();
