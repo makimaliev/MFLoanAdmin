@@ -1,13 +1,12 @@
 package kg.gov.mf.loan.admin.sys.service;
 
-import java.util.List;
-
+import kg.gov.mf.loan.admin.sys.dao.MessageResourceDao;
+import kg.gov.mf.loan.admin.sys.model.MessageResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kg.gov.mf.loan.admin.sys.dao.*;
-import kg.gov.mf.loan.admin.sys.model.*;
+import java.util.List;
 
 @Service
 public class MessageResourceServiceJpaImpl implements MessageResourceService {
@@ -53,4 +52,16 @@ public class MessageResourceServiceJpaImpl implements MessageResourceService {
     public List<MessageResource> findAll() {
         return this.messageResourceDao.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<MessageResource> findAll(int limit,String val) {
+		return this.messageResourceDao.findAll(limit,val);
+	}
+
+	@Override
+	@Transactional
+	public List<MessageResource> findAll(int limit) {
+		return this.messageResourceDao.findAll(limit);
+	}
 }

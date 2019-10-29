@@ -1,10 +1,9 @@
 package kg.gov.mf.loan.admin.sys.dao;
 
-import java.util.List;
-
+import kg.gov.mf.loan.admin.sys.model.MessageResource;
 import org.springframework.stereotype.Repository;
 
-import kg.gov.mf.loan.admin.sys.model.*;
+import java.util.List;
 
 @Repository
 public interface MessageResourceDao {
@@ -18,5 +17,9 @@ public interface MessageResourceDao {
 	public MessageResource findById (long id);
 	
 	public List<MessageResource> findAll();
+
+	public List<MessageResource> findAll(int limit,String val);
+
+	public List<MessageResource> findAll(int limit);
 
 }

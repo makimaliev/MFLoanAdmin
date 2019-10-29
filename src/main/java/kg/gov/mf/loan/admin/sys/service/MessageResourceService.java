@@ -1,9 +1,8 @@
 package kg.gov.mf.loan.admin.sys.service;
 
+import kg.gov.mf.loan.admin.sys.model.MessageResource;
+
 import java.util.List;
-
-
-import kg.gov.mf.loan.admin.sys.model.*;
 
 public interface MessageResourceService {
 
@@ -18,4 +17,8 @@ public interface MessageResourceService {
 	public MessageResource findById (long id);
 	
 	public List<MessageResource> findAll();
+
+	public List<MessageResource> findAll(int limit,String val);
+
+	public List<MessageResource> findAll(int limit);
 }
