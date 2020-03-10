@@ -27,8 +27,6 @@ public class ValidationService {
 	
     public void validateObject(Object object, BindingResult result){
     	
-    	System.out.println("test");
-    	
     	Set<ObjectField> objectTypeFieldList = new HashSet<ObjectField>();
 		
 		objectTypeFieldList = this.objectTypeService.findByCode(object.getClass().getSimpleName()).getObjectField();
@@ -47,8 +45,6 @@ public class ValidationService {
 				{
 					
 					String objectToBeValidated = (object.getClass().getMethod(sMethodName, null).invoke(object)).toString();
-					
-					System.out.println(objectToBeValidated);
 					
 					if(validationTerm.getMax_length() >0)
 					{

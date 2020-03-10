@@ -61,8 +61,6 @@ public class UserServiceJpaImpl extends GenericServiceAdminImpl<User> implements
 	public User findByDepartment(Department department)
 	{
 		Organization gaubk = organizationDao.findById((long)1);
-		System.out.println(gaubk.getName());
-		System.out.println(department.getName());
 
 		return userDao.findByStaff(staffDao.findByOrganizationAndDepartment(organizationDao.findById((long)1),department));
 	}

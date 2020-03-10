@@ -30,9 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService{
         
       //  User user = userService.findByUsername(username);
         
-        System.out.println("User : "+user);
         if(user==null){
-            System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
             return new org.springframework.security.core.userdetails.User
@@ -63,7 +61,6 @@ public class CustomUserDetailsService implements UserDetailsService{
             }
         }
         
-        System.out.print("authorities :"+authorities);
         return authorities;
     }
      
